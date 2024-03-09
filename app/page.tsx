@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import { BlackRookHold, Fortified, Tyrannical } from "@/components/Images";
 import StackedGraph from "@/components/StackedGraph";
+import { DungeonIcon } from "@/components/dungeons";
 import { sample } from "@/sample";
 
 const keyCounts = {
@@ -26,7 +27,7 @@ export default function Home() {
           return (
             <div className="flex w-full my-2.5">
               <div>
-                <BlackRookHold width={65} height={65} />
+                <DungeonIcon dungeonShort={key} width={65} height={65} />
               </div>
               <div className="flex flex-col grow">
                 <div className="flex flex-row">

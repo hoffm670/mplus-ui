@@ -6,15 +6,6 @@ interface ImageProps {
   height: number;
 }
 
-export const BlackRookHold: FC<ImageProps> = ({
-  width,
-  height,
-}: ImageProps) => {
-  return (
-    <Image alt="Black Rook Hold" width={width} height={height} src="/brh.jpg" />
-  );
-};
-
 export const Tyrannical: FC<ImageProps> = ({ width, height }: ImageProps) => {
   return (
     <Image
