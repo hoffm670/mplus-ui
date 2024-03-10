@@ -14,6 +14,7 @@ export const Tyrannical: FC<ImageProps> = ({ width, height }: ImageProps) => {
       width={width}
       height={height}
       src="/tyrannical.jpg"
+      unoptimized
     />
   );
 };
@@ -26,6 +27,7 @@ export const Fortified: FC<ImageProps> = ({ width, height }: ImageProps) => {
       width={width}
       height={height}
       src="/fortified.jpg"
+      unoptimized
     />
   );
 };

@@ -11,7 +11,7 @@ const getStats = async (url: string) => {
 
 const useGetStats = () => {
   const { data, error, isValidating } = useSWR<DungeonStatsResponse>(
-    "http://localhost:8081/stats",
+    "https://mplus-api.web.app/stats",
     getStats
   );
 
