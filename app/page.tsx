@@ -12,7 +12,7 @@ export default function Home() {
       <div className="w-full max-w-6xl">
         {data?.dungeons.map((dungeon) => {
           return (
-            <div className="my-2.5">
+            <div key={dungeon.info.slug} className="my-2.5">
               <DungeonPanel dungeonStats={dungeon} />
             </div>
           );

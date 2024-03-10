@@ -26,6 +26,7 @@ const StackedGraph: FC<StackedGraphProps> = ({ keyCounts }) => {
         {keyData.map((data, index) => {
           return (
             <div
+              key={data.keyLevel}
               className={`mr-px ${newColors[index]} cursor-pointer`}
               style={{
                 width: `${data.percentage}%`,

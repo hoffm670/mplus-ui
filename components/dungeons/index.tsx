@@ -21,6 +21,7 @@ export const DungeonIcon: FC<DungeonIconProps> = ({
       width={size}
       height={size}
       src={dungeonInfo.url}
+      unoptimized
     />
   );
 };
