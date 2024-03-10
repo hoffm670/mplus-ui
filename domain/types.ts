@@ -3,7 +3,7 @@ interface DungeonStatsResponse {
   date: string;
   region: string;
   time: string;
-  timestamp: string;
+  timestamp: number;
   season: string;
 }
 

@@ -1,5 +1,6 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { modifyData, KeyData } from "./helper";
+import { initFlowbite } from "flowbite";
 
 interface StackedGraphProps {
   keyCounts: {};
@@ -13,27 +14,43 @@ const newColors = [
   "bg-orange-400 hover:bg-orange-500",
   "bg-red-400 hover:bg-red-500",
   "bg-cyan-400 hover:bg-cyan-500",
-  "bg-yellow-400 hover:bg-yellow-500",
+  "bg-yellow-300 hover:bg-yellow-400",
+  "bg-black hover:bg-gray-800",
 ];
 
 const StackedGraph: FC<StackedGraphProps> = ({ keyCounts }) => {
   const keyData: KeyData[] = modifyData(keyCounts);
-
+  useEffect(() => {
+    initFlowbite();
+  }, []);
   return (
     <div>
-      <div className="flex text-center bg-gray">
+      <div className="flex text-center bg-gray-800">
         {keyData.map((data, index) => {
+          let tag = Math.random().toString(36);
           return (
             <div
+              data-tooltip-target={tag}
               key={data.keyLevel}
               className={`mr-px ${newColors[index]} cursor-pointer`}
               style={{
                 width: `${data.percentage}%`,
               }}
             >
-              {data.percentage > 4 && !data.keyLevel.includes("-")
-                ? data.keyLevel
-                : ""}
+              <div>
+                {data.percentage > 4 && !data.keyLevel.includes("-")
+                  ? data.keyLevel
+                  : ""}
+              </div>
+              <div
+                id={tag}
+                role="tooltip"
+                className="absolute z-10 invisible px-3 py-2 text-xs font-medium text-black transition-opacity duration-300 bg-white rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700 flex flex-col"
+              >
+                <span>{`Key Level: ${data.keyLevel}`}</span>
+                <span>{`Characters: ${data.count}`}</span>
+                <span>{`Percentage: ${data.percentage.toFixed(1)}%`}</span>
+              </div>
             </div>
           );
         })}
