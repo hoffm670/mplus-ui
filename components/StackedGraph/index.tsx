@@ -12,9 +12,8 @@ const newColors = [
   "bg-purple-400 hover:bg-purple-500",
   "bg-orange-400 hover:bg-orange-500",
   "bg-red-400 hover:bg-red-500",
-  "bg-gray-400 hover:bg-cyan-500",
-  "bg-gray-400 hover:bg-cyan-500",
-  "bg-gray-400 hover:bg-cyan-500",
+  "bg-cyan-400 hover:bg-cyan-500",
+  "bg-yellow-400 hover:bg-yellow-500",
 ];
 
 const StackedGraph: FC<StackedGraphProps> = ({ keyCounts }) => {
