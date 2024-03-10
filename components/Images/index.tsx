@@ -9,6 +9,7 @@ interface ImageProps {
 export const Tyrannical: FC<ImageProps> = ({ width, height }: ImageProps) => {
   return (
     <Image
+      className="rounded-sm"
       alt="Tyrannical"
       width={width}
       height={height}
@@ -19,6 +20,12 @@ export const Tyrannical: FC<ImageProps> = ({ width, height }: ImageProps) => {
 
 export const Fortified: FC<ImageProps> = ({ width, height }: ImageProps) => {
   return (
-    <Image alt="Fortified" width={width} height={height} src="/fortified.jpg" />
+    <Image
+      className="rounded-sm"
+      alt="Fortified"
+      width={width}
+      height={height}
+      src="/fortified.jpg"
+    />
   );
 };

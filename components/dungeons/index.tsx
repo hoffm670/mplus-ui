@@ -3,18 +3,23 @@ import Image from "next/image";
 import { getDungeonInfo } from "./helper";
 
 interface DungeonIconProps {
-  height: number;
-  width: number;
+  size: number;
   dungeonShort: string;
+  [rest: string]: any;
 }
 
-export const DungeonIcon: FC<DungeonIconProps> = (props: DungeonIconProps) => {
-  const dungeonInfo = getDungeonInfo(props.dungeonShort);
+export const DungeonIcon: FC<DungeonIconProps> = ({
+  size,
+  dungeonShort,
+  ...rest
+}) => {
+  const dungeonInfo = getDungeonInfo(dungeonShort);
   return (
     <Image
+      {...rest}
       alt={dungeonInfo.alt}
-      width={props.width}
-      height={props.height}
+      width={size}
+      height={size}
       src={dungeonInfo.url}
     />
   );
