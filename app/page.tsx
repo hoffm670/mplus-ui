@@ -2,6 +2,7 @@
 import { DungeonPanel } from "@/components/DungeonPanel";
 import Header from "@/components/Header";
 import useGetStats from "@/domain/queries/get-stats";
+import { Footer } from "flowbite-react";
 
 export default function Home() {
   const { data, isLoading, error, isValidating } = useGetStats();
@@ -18,6 +19,24 @@ export default function Home() {
           );
         })}
       </div>
+      <Footer container className="bg-gray-800 justify-start text-sm">
+        <div className="flex flex-row">
+          <Footer.Brand
+            src="https://cdn.raiderio.net/images/brand/Logo_2ColorWhite.png"
+            href="https://www.raider.io"
+          />
+          <div className="flex flex-col justify-center text-sm">
+            All data obtained from Raider.io
+          </div>
+        </div>
+
+        {data?.timestamp && (
+          <div className="flex flex-col items-end">
+            <span>Last Updated</span>
+            <span>{new Date(data?.timestamp * 1000).toLocaleString()}</span>
+          </div>
+        )}
+      </Footer>
     </div>
   );
 }
