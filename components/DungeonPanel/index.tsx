@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { DungeonIcon } from "../dungeons";
+import { DungeonIcon } from "../DungeonIcon";
 import { Fortified, Tyrannical } from "../Images";
 import StackedGraph from "../StackedGraph";
 
