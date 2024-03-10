@@ -19,7 +19,10 @@ export default function Home() {
           );
         })}
       </div>
-      <Footer container className="bg-gray-800 justify-start text-sm">
+      <Footer
+        container
+        className="bg-gray-800 justify-start text-sm rounded-none mt-4"
+      >
         <div className="flex flex-row">
           <Footer.Brand
             src="https://cdn.raiderio.net/images/brand/Logo_2ColorWhite.png"
