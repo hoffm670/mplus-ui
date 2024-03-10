@@ -9,7 +9,7 @@ interface HeaderProps {
 const Header: FC<HeaderProps> = ({ title }: HeaderProps) => {
   return (
     <div className="w-full">
-      <header className="w-full bg-gray-800 text-white text-center py-4 shadow-xl">
+      <header className="w-full bg-gray-800 text-white text-center py-4 shadow-xl mb-2">
         <span className="font-sans font-bold text-2xl">{title}</span>
       </header>
     </div>
