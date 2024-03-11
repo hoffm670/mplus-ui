@@ -8,7 +8,7 @@ interface DungeonStatsResponse {
   change_days: number;
   change: number;
   rating_cutoff: number;
-  character_count: 1336;
+  character_count: number;
 }
 
 interface DungeonStats {
