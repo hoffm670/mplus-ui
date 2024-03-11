@@ -5,6 +5,10 @@ interface DungeonStatsResponse {
   time: string;
   timestamp: number;
   season: string;
+  change_days: number;
+  change: number;
+  rating_cutoff: number;
+  character_count: 1336;
 }
 
 interface DungeonStats {

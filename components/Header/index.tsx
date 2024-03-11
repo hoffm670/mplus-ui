@@ -6,7 +6,7 @@ interface HeaderProps {
   title: string;
 }
 
-const Header: FC<HeaderProps> = ({ title }: HeaderProps) => {
+export const Header: FC<HeaderProps> = ({ title }: HeaderProps) => {
   return (
     <div className="w-full">
       <header className="w-full bg-gray-800 text-white text-center py-4 shadow-xl mb-2">
@@ -15,5 +15,3 @@ const Header: FC<HeaderProps> = ({ title }: HeaderProps) => {
     </div>
   );
 };
-
-export default Header;
