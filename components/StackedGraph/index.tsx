@@ -45,7 +45,7 @@ const StackedGraph: FC<StackedGraphProps> = ({ keyCounts }) => {
               <div
                 id={tag}
                 role="tooltip"
-                className="absolute z-10 invisible px-3 py-2 text-xs font-medium text-black transition-opacity duration-300 bg-white rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700 flex flex-col"
+                className="absolute z-10 invisible px-3 py-2 text-xs font-medium text-black transition-opacity duration-300 bg-white rounded-lg shadow-sm opacity-0 tooltip flex flex-col"
               >
                 <span>{`Key Level: ${data.keyLevel}`}</span>
                 <span>{`Characters: ${data.count}`}</span>
