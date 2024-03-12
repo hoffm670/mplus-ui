@@ -8,23 +8,23 @@ interface FooterProps {
 
 export const Footer: FC<FooterProps> = ({ updatedTimestamp }) => {
   return (
-    <FlowFooter
-      container
-      className="bg-gray-800 text-sm rounded-none mt-4 flex items-center justify-between min-w-[768px]"
-    >
-      <div className="flex flex-row">
-        <FlowFooter.Brand src={BIG_RAIDER_LOGO} href={RAIDER_IO} />
-        <div className="flex flex-col justify-center text-sm">
-          All data obtained from Raider.io
+    <div className="w-full bg-gray-800 mt-4 flex flex-row justify-center min-w-[768px]">
+      <FlowFooter
+        container
+        className=" bg-gray-800 text-sm rounded-none flex items-center justify-between max-w-7xl mt-0 shadow-none"
+      >
+        <div className="flex flex-row ">
+          <FlowFooter.Brand src={BIG_RAIDER_LOGO} href={RAIDER_IO} />
+          <div className="flex flex-col justify-center text-sm">All data obtained from Raider.io</div>
         </div>
-      </div>
 
-      {updatedTimestamp && (
-        <div className="flex flex-col items-end">
-          <span>Last Updated</span>
-          <span>{new Date(updatedTimestamp * 1000).toLocaleString()}</span>
-        </div>
-      )}
-    </FlowFooter>
+        {updatedTimestamp && (
+          <div className="flex flex-col items-end">
+            <span>Last Updated</span>
+            <span>{new Date(updatedTimestamp * 1000).toLocaleString()}</span>
+          </div>
+        )}
+      </FlowFooter>
+    </div>
   );
 };
