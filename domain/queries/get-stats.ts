@@ -14,7 +14,8 @@ const useGetStats = (region: string) => {
   }
   const { data, error, isValidating } = useSWR<DungeonStatsResponse>(
     GET_STATS_URL,
-    (url: string) => getStats(url, region)
+    (url: string) => getStats(url, region),
+    { dedupingInterval: Infinity, revalidateOnFocus: false }
   );
 
   return {
