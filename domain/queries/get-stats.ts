@@ -1,6 +1,7 @@
 "use client";
 import useSWR from "swr";
-import { GET_STATS_URL } from "../constants";
+import { GET_STATS_URL, REGIONS } from "../constants";
+import { notFound } from "next/navigation";
 
 const getStats = async (url: string, region: string) => {
   const response = await fetch(`${url}?region=${region}`);
@@ -8,6 +9,9 @@ const getStats = async (url: string, region: string) => {
 };
 
 const useGetStats = (region: string) => {
+  if (!REGIONS.includes(region)) {
+    return notFound();
+  }
   const { data, error, isValidating } = useSWR<DungeonStatsResponse>(
     GET_STATS_URL,
     (url: string) => getStats(url, region)
