@@ -1,16 +1,16 @@
-"use client";
 import { DungeonPanel } from "@/components/DungeonPanel";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { StatPanel } from "@/components/StatPanel";
 import useGetStats from "@/domain/queries/get-stats";
-import { usePathname } from "next/navigation";
 import { Spinner } from "flowbite-react";
+import { FC } from "react";
 
-export default function Main() {
-  let pathname = usePathname();
-  let region = pathname.replace(/^\//, "");
+interface MainPageProps {
+  region: string;
+}
 
+export const MainPage: FC<MainPageProps> = ({ region }) => {
   const { data, isLoading, error, isValidating } = useGetStats(region);
 
   return (
@@ -53,4 +53,4 @@ export default function Main() {
       )}
     </div>
   );
-}
+};
