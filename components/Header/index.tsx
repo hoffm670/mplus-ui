@@ -20,7 +20,7 @@ export const Header: FC<HeaderProps> = ({ title, region }: HeaderProps) => {
           <div className="flex flex-row w-full">
             <div className="flex flex-column justify-center items-center bg-black w-14 h-14 rounded-full">
               <div>
-                <Image width={40} height={40} src={"/icon.ico"} alt={""} />
+                <Image width={40} height={40} src={"/icon.ico"} alt={""} unoptimized />
               </div>
             </div>
             <span className="flex items-center font-bold text-2xl ml-3">{title}</span>
