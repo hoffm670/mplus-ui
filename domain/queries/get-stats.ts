@@ -4,7 +4,7 @@ import { GET_STATS_URL, REGIONS } from "../constants";
 import { notFound } from "next/navigation";
 
 const getStats = async (url: string, region: string) => {
-  const response = await fetch(`${url}?region=${region}`);
+  const response = await fetch(`${url}/${region}`);
   return response.json();
 };
 
