@@ -1,8 +1,8 @@
-export const getDungeonInfo = (shortName: string) => {
-  return dungeonMap[shortName];
+export const getDungeonInfo = (shortName: string): DungeonIconInfo | undefined => {
+  return dungeonMap[shortName] || undefined;
 };
 
-interface DungeonIconInfo {
+export interface DungeonIconInfo {
   url: string;
   alt: string;
 }
