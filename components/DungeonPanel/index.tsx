@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { DungeonIcon } from "../DungeonIcon";
 import { Panel } from "@/components/Panel";
-import { Fortified, Tyrannical } from "../Images";
 import Image from "next/image";
 import StackedGraph from "../StackedGraph";
 import { useRouter } from "next/navigation";
@@ -38,21 +37,8 @@ export const DungeonPanel: FC<DungeonPanelProps> = ({ dungeonStats, season, regi
           </div>
         </div>
         <div className="flex flex-col">
-          <div className="flex flex-row">
-            <div className="flex items-center">
-              <Fortified width={30} height={30} />
-            </div>
-            <div className="grow py-2 pl-2">
-              <StackedGraph keyCounts={dungeonStats.Fortified} />
-            </div>
-          </div>
-          <div className="flex flex-row">
-            <div className="flex items-center">
-              <Tyrannical width={30} height={30} />
-            </div>
-            <div className="grow py-2 pl-2">
-              <StackedGraph keyCounts={dungeonStats.Tyrannical} />
-            </div>
+          <div className="grow py-2 pl-2">
+            <StackedGraph keyCounts={dungeonStats.runs} />
           </div>
         </div>
       </div>

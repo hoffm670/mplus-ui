@@ -37,11 +37,7 @@ const StackedGraph: FC<StackedGraphProps> = ({ keyCounts }) => {
                 width: `${data.percentage}%`,
               }}
             >
-              <div>
-                {data.percentage > 4 && !data.keyLevel.includes("-")
-                  ? data.keyLevel
-                  : ""}
-              </div>
+              <div>{data.percentage > 4 && !data.keyLevel.includes("-") ? data.keyLevel : ""}</div>
               <div
                 id={tag}
                 role="tooltip"

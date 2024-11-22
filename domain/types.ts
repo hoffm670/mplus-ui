@@ -13,8 +13,7 @@ interface DungeonStatsResponse {
 
 interface DungeonStats {
   info: DungeonInfo;
-  Tyrannical: { [key: string]: number };
-  Fortified: { [key: string]: number };
+  runs: { [key: string]: number };
 }
 
 interface DungeonInfo {
