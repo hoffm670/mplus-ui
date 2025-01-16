@@ -1,5 +1,6 @@
 export const REGIONS = ["us", "eu", "tw", "kr"];
-export const GET_STATS_URL = "https://mplus-title-tracker.web.app/api/stats";
+// export const GET_STATS_URL = "https://mplus-title-tracker.web.app/api/stats";
+export const GET_STATS_URL = "https://mplus-title-tracker.vercel.app/api/stats";
 
 export const RAIDER_IO = "https://raider.io";
 export const BIG_RAIDER_LOGO = "https://cdn.raiderio.net/images/brand/Logo_2ColorWhite.png";
