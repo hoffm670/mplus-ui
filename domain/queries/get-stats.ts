@@ -1,6 +1,6 @@
 "use client";
 import useSWR from "swr";
-import { GET_STATS_URL, REGIONS } from "../constants";
+import { REGIONS } from "../constants";
 import { notFound } from "next/navigation";
 
 const getStats = async (url: string, region: string) => {
@@ -13,7 +13,7 @@ const useGetStats = (region: string) => {
     return notFound();
   }
   const { data, error, isValidating } = useSWR<DungeonStatsResponse>(
-    GET_STATS_URL,
+    process.env.NEXT_PUBLIC_GET_STATS_URL,
     (url: string) => getStats(url, region),
     { dedupingInterval: Infinity, revalidateOnFocus: false }
   );
