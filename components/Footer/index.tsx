@@ -15,7 +15,7 @@ export const Footer: FC<FooterProps> = ({ updatedTimestamp }) => {
       >
         <div className="flex flex-row ">
           <FlowFooter.Brand src={BIG_RAIDER_LOGO} href={RAIDER_IO} />
-          <div className="flex flex-col justify-center text-sm">All data obtained from Raider.io</div>
+          <div className="flex flex-col justify-center text-sm">Data from Raider.io</div>
         </div>
 
         {updatedTimestamp && (
