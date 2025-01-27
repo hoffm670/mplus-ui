@@ -11,9 +11,10 @@ interface DungeonPanelProps {
   dungeonStats: DungeonStats;
   season: string;
   region: string;
+  characterInfo?: CharacterInfo;
 }
 
-export const DungeonPanel: FC<DungeonPanelProps> = ({ dungeonStats, season, region }) => {
+export const DungeonPanel: FC<DungeonPanelProps> = ({ dungeonStats, season, region, characterInfo }) => {
   const router = useRouter();
   return (
     <Panel>
@@ -38,7 +39,15 @@ export const DungeonPanel: FC<DungeonPanelProps> = ({ dungeonStats, season, regi
         </div>
         <div className="flex flex-col">
           <div className="grow py-2 pl-2">
-            <StackedGraph keyCounts={dungeonStats.runs} />
+            <StackedGraph
+              keyCounts={dungeonStats.runs}
+              characterKey={
+                characterInfo &&
+                characterInfo.mythic_plus_best_runs.find((run) => run["short_name"] === dungeonStats.info.shortname)[
+                  "mythic_level"
+                ]
+              }
+            />
           </div>
         </div>
       </div>

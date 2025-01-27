@@ -22,3 +22,18 @@ interface DungeonInfo {
   id: string;
   name: string;
 }
+
+interface CharacterInfo {
+  name: string;
+  race: string;
+  class: string;
+  active_spec_name: string;
+  active_spec_role: string;
+  thumbnail_url: string;
+  realm: string;
+  profile_url: string;
+  mythic_plus_ranks: {};
+  mythic_plus_best_runs: [];
+  mythic_plus_scores_by_season: {};
+  guild: {};
+}
