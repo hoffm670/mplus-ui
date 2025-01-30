@@ -1,12 +1,16 @@
-import { FC } from "react";
-import { Footer as FlowFooter } from "flowbite-react";
+"use client";
+
 import { BIG_RAIDER_LOGO, RAIDER_IO } from "@/domain/constants";
+import useGetStats from "@/domain/queries/get-stats";
+import { Footer as FlowFooter } from "flowbite-react";
+import { usePathname } from "next/navigation";
+import { FC } from "react";
 
-interface FooterProps {
-  updatedTimestamp?: number;
-}
+export const Footer: FC = () => {
+  const pathname = usePathname();
+  const region = pathname.split("/")[1];
+  const { data, isLoading, error, isValidating } = useGetStats(region);
 
-export const Footer: FC<FooterProps> = ({ updatedTimestamp }) => {
   return (
     <div className="w-full bg-gray-800 mt-4 flex flex-row justify-center min-w-[768px]">
       <FlowFooter
@@ -15,13 +19,13 @@ export const Footer: FC<FooterProps> = ({ updatedTimestamp }) => {
       >
         <div className="flex flex-row ">
           <FlowFooter.Brand src={BIG_RAIDER_LOGO} href={RAIDER_IO} />
-          <div className="flex flex-col justify-center text-sm">All data obtained from Raider.io</div>
+          <div className="flex flex-col justify-center text-sm">Data from Raider.io</div>
         </div>
 
-        {updatedTimestamp && (
+        {!isLoading && !isValidating && data?.timestamp && (
           <div className="flex flex-col items-end">
             <span>Last Updated</span>
-            <span>{new Date(updatedTimestamp * 1000).toLocaleString()}</span>
+            <span>{new Date(data?.timestamp * 1000).toLocaleString()}</span>
           </div>
         )}
       </FlowFooter>

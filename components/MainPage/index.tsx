@@ -1,6 +1,4 @@
 import { DungeonPanel } from "@/components/DungeonPanel";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
 import { StatPanel } from "@/components/StatPanel";
 import useGetStats from "@/domain/queries/get-stats";
 import { Spinner } from "flowbite-react";
@@ -14,9 +12,7 @@ export const MainPage: FC<MainPageProps> = ({ region }) => {
   const { data, isLoading, error, isValidating } = useGetStats(region);
 
   return (
-    <div className="flex flex-col items-center min-w-[768px]">
-      <Header title="Mythic Plus Title Tracker" region={region} />
-
+    <div className="w-full flex flex-col items-center">
       {isLoading ||
         (isValidating && (
           <div className="my-8">
@@ -48,7 +44,6 @@ export const MainPage: FC<MainPageProps> = ({ region }) => {
               })}
             </div>
           </div>
-          <Footer updatedTimestamp={data?.timestamp} />
         </>
       )}
     </div>

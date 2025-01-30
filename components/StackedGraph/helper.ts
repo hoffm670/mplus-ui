@@ -56,3 +56,26 @@ const combineKeyData = (keys: KeyData[]): KeyData => {
     percentage: sumPercent,
   };
 };
+
+export const getKeyPositionPercent = (dungeonRuns: DungeonRun[], characterRun: DungeonRun) => {
+  dungeonRuns.sort((a, b) => {
+    if (a.level === b.level) {
+      return b.time_ms - a.time_ms;
+    } else {
+      return a.level - b.level;
+    }
+  });
+  return findRunIndex(dungeonRuns, characterRun);
+};
+
+const findRunIndex = (sortedRuns: DungeonRun[], characterRun: DungeonRun): number => {
+  let index: number = 0;
+  while (index < sortedRuns.length) {
+    let run = sortedRuns[index];
+    if (characterRun.level > run.level || (characterRun.level === run.level && characterRun.time_ms < run.time_ms)) {
+      index++;
+    } else {
+      return Math.round(100 * (index / sortedRuns.length));
+    }
+  }
+};
