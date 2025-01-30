@@ -14,6 +14,12 @@ interface DungeonStatsResponse {
 interface DungeonStats {
   info: DungeonInfo;
   runs: { [key: string]: number };
+  runList: DungeonRun[];
+}
+
+interface DungeonRun {
+  level: number;
+  time_ms: number;
 }
 
 interface DungeonInfo {

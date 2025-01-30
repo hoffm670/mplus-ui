@@ -1,10 +1,11 @@
 import { FC, useEffect } from "react";
-import { modifyData, KeyData } from "./helper";
+import { modifyData, KeyData, getKeyPositionPercent } from "./helper";
 import { initFlowbite } from "flowbite";
 
 interface StackedGraphProps {
   keyCounts: {};
-  characterKey?: number;
+  dungeonRuns: DungeonRun[];
+  characterRun?: DungeonRun;
 }
 
 const newColors = [
@@ -19,14 +20,37 @@ const newColors = [
   "bg-black hover:bg-gray-800",
 ];
 
-const StackedGraph: FC<StackedGraphProps> = ({ keyCounts, characterKey }) => {
+const StackedGraph: FC<StackedGraphProps> = ({ keyCounts, dungeonRuns, characterRun }) => {
   const keyData: KeyData[] = modifyData(keyCounts);
   useEffect(() => {
     initFlowbite();
   }, []);
   return (
     <div>
-      <div className="flex text-center bg-gray-800">
+      <div className="flex text-center bg-gray-800 relative">
+        {characterRun && (
+          <div
+            className={`w-6 h-6 absolute bottom-5`}
+            style={{ left: `calc(${getKeyPositionPercent(dungeonRuns, characterRun)}% - 13px)` }}
+          >
+            <svg
+              className={`w-6 h-6 text-white`}
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fillRule="evenodd"
+                d="M18.425 10.271C19.499 8.967 18.57 7 16.88 7H7.12c-1.69 0-2.618 1.967-1.544 3.271l4.881 5.927a2 2 0 0 0 3.088 0l4.88-5.927Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+          // </div>
+        )}
         {keyData.map((data, index) => {
           let tag = Math.random().toString(36);
           return (
@@ -38,26 +62,6 @@ const StackedGraph: FC<StackedGraphProps> = ({ keyCounts, characterKey }) => {
                 width: `${data.percentage}%`,
               }}
             >
-              {characterKey && characterKey === Number(data.keyLevel) && (
-                <div className="absolute bottom-5 w-full flex flex-row justify-center">
-                  <svg
-                    className="w-6 h-6 text-white "
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M18.425 10.271C19.499 8.967 18.57 7 16.88 7H7.12c-1.69 0-2.618 1.967-1.544 3.271l4.881 5.927a2 2 0 0 0 3.088 0l4.88-5.927Z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </div>
-              )}
-
               <div>{data.percentage > 4 && !data.keyLevel.includes("-") ? data.keyLevel : ""} </div>
               <div
                 id={tag}

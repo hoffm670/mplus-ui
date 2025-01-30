@@ -5,7 +5,7 @@ import Image from "next/image";
 import StackedGraph from "../StackedGraph";
 import { useRouter } from "next/navigation";
 import { SMALL_RAIDER_LOGO } from "@/domain/constants";
-import { getDungeonLink } from "./helper";
+import { getDungeonLink, getDungeonRun } from "./helper";
 
 interface DungeonPanelProps {
   dungeonStats: DungeonStats;
@@ -41,11 +41,12 @@ export const DungeonPanel: FC<DungeonPanelProps> = ({ dungeonStats, season, regi
           <div className="grow py-2 pl-2">
             <StackedGraph
               keyCounts={dungeonStats.runs}
-              characterKey={
+              dungeonRuns={dungeonStats.runList}
+              characterRun={
                 characterInfo &&
-                characterInfo.mythic_plus_best_runs.find((run) => run["short_name"] === dungeonStats.info.shortname)[
-                  "mythic_level"
-                ]
+                getDungeonRun(
+                  characterInfo.mythic_plus_best_runs.find((run) => run["short_name"] === dungeonStats.info.shortname)
+                )
               }
             />
           </div>

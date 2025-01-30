@@ -122,6 +122,8 @@ export const CharacterModal: FC<CharacterModalProps> = ({ region }: CharacterMod
                     color="dark"
                     onClick={() => {
                       navigateToCharacterScreen(router, format, region, realm, character, raiderLink);
+                      setShowCharacterModal(false);
+                      clearForms();
                     }}
                   >
                     Confirm

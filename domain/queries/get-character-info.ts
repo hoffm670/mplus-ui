@@ -3,15 +3,21 @@ import useSWR from "swr";
 import { REGIONS } from "../constants";
 import { notFound } from "next/navigation";
 
-const RAIDER_URL = "https://raider.io/api/v1/characters/profile";
+const RAIDER_URL: string = "https://raider.io/api/v1/characters/profile";
+const FIELDS: string[] = [
+  "mythic_plus_best_runs",
+  "mythic_plus_ranks",
+  "mythic_plus_scores_by_season:current",
+  "guild",
+];
 
 const getCharacterInfo = async (url: string, region: string, realm: string, character: string) => {
   const searchParams = new URLSearchParams({
     region: region,
     realm: realm,
     name: character,
-    fields: "mythic_plus_best_runs,mythic_plus_ranks,mythic_plus_scores_by_season:current,guild",
-  }); // TODO
+    fields: FIELDS.join(","),
+  });
 
   const response = await fetch(`${url}?${searchParams}`);
   return response.json();
