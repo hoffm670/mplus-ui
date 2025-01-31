@@ -12,7 +12,7 @@ export const Footer: FC = () => {
   const { data, isLoading, error, isValidating } = useGetStats(region);
 
   return (
-    <div className="w-full bg-gray-800 mt-4 flex flex-row justify-center min-w-[768px]">
+    <div className="w-full bg-gray-800 mt-4 flex flex-row justify-center min-w-[768px] h-[88px]">
       <FlowFooter
         container
         className=" bg-gray-800 text-sm rounded-none flex items-center justify-between max-w-7xl mt-0 shadow-none"

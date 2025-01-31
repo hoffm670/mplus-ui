@@ -1,5 +1,6 @@
 import { DungeonPanel } from "@/components/DungeonPanel";
 import { StatPanel } from "@/components/StatPanel";
+import { BODY_EXTRA_MARGIN } from "@/domain/constants";
 import useGetStats from "@/domain/queries/get-stats";
 import { Spinner } from "flowbite-react";
 import { FC } from "react";
@@ -12,13 +13,12 @@ export const MainPage: FC<MainPageProps> = ({ region }) => {
   const { data, isLoading, error, isValidating } = useGetStats(region);
 
   return (
-    <div className="w-full flex flex-col items-center">
-      {isLoading ||
-        (isValidating && (
-          <div className="my-8">
-            <Spinner aria-label="Loader" color="gray" className="w-20 h-20" />
-          </div>
-        ))}
+    <div className="w-full flex flex-col items-center" style={{ minHeight: BODY_EXTRA_MARGIN }}>
+      {(isLoading || isValidating) && (
+        <div className="my-8">
+          <Spinner aria-label="Loader" color="gray" className="w-20 h-20" />
+        </div>
+      )}
       {!isLoading && !isValidating && data && (
         <>
           <div className="w-full max-w-6xl">

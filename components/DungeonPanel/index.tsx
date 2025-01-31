@@ -15,6 +15,10 @@ interface DungeonPanelProps {
 }
 
 export const DungeonPanel: FC<DungeonPanelProps> = ({ dungeonStats, season, region, characterInfo }) => {
+  let characterRun = undefined;
+  if (characterInfo) {
+    characterRun = characterInfo.mythic_plus_best_runs.find((run) => run["short_name"] === dungeonStats.info.shortname);
+  }
   const router = useRouter();
   return (
     <Panel>
@@ -42,12 +46,7 @@ export const DungeonPanel: FC<DungeonPanelProps> = ({ dungeonStats, season, regi
             <StackedGraph
               keyCounts={dungeonStats.runs}
               dungeonRuns={dungeonStats.runList}
-              characterRun={
-                characterInfo &&
-                getDungeonRun(
-                  characterInfo.mythic_plus_best_runs.find((run) => run["short_name"] === dungeonStats.info.shortname)
-                )
-              }
+              characterRun={characterRun && getDungeonRun(characterRun)}
             />
           </div>
         </div>
