@@ -19,7 +19,7 @@ const getCharacterInfo = async (url: string, region: string, realm: string, char
     fields: FIELDS.join(","),
   });
 
-  const response = await fetch(`${url}?${searchParams}`);
+  const response = await fetch(`${url}?${searchParams}`, { cache: "no-store" });
   return response.json();
 };
 
