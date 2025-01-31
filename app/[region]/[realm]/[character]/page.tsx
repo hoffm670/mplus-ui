@@ -58,7 +58,10 @@ export default function MAIN() {
                     <StatPanel title="Region Rank" stat={characterData.mythic_plus_ranks["overall"]["region"]} />
                   </div>
                   <div className="w-1/3">
-                    <StatPanel title="Current Cutoff" stat={statsData.rating_cutoff} />
+                    <StatPanel
+                      title="Current Score"
+                      stat={characterData.mythic_plus_scores_by_season[0]["scores"]["all"]}
+                    />
                   </div>
                   <div className="w-1/3">
                     <StatPanel
