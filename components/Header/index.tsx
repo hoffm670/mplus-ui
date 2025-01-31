@@ -16,7 +16,12 @@ export const Header: FC = () => {
     <div className="w-full font-sans">
       <header className="w-full flex justify-center bg-gray-800 text-white text-center py-2 shadow-xl mb-2">
         <div className="max-w-6xl flex flex-row w-full">
-          <div className="flex flex-row w-full">
+          <div
+            className="flex flex-row w-full cursor-pointer"
+            onClick={() => {
+              router.push(`/${region}`);
+            }}
+          >
             <div className="flex flex-column justify-center items-center bg-black w-14 h-14 rounded-full">
               <div>
                 <Image width={40} height={40} src={"/icon.ico"} alt={""} unoptimized />

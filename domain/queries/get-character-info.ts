@@ -27,7 +27,7 @@ const useGetCharacterInfo = (region: string, realm: string, character: string) =
   if (!REGIONS.includes(region)) {
     return notFound();
   }
-  const { data, error, isValidating } = useSWR<CharacterInfo>(
+  let { data, error, isValidating } = useSWR<CharacterInfo>(
     RAIDER_URL,
     (url: string) => getCharacterInfo(url, region, realm, character),
     {
@@ -35,7 +35,9 @@ const useGetCharacterInfo = (region: string, realm: string, character: string) =
       revalidateOnFocus: false,
     }
   );
-
+  if (data && data["statusCode"] && data["statusCode"] !== 200) {
+    error = data;
+  }
   return {
     data,
     isLoading: !data && !error,
