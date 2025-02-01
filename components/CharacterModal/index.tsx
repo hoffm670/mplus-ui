@@ -1,8 +1,8 @@
 import { CHARACTER_AND_REALM, RAIDER_LINK } from "@/domain/constants";
-import { Button, CustomFlowbiteTheme, Dropdown, Label, Modal, TextInput } from "flowbite-react";
+import { Button, Dropdown, Label, Modal, TextInput } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
-import { navigateToCharacterScreen } from "./helper";
+import { modalTheme, navigateToCharacterScreen } from "./helper";
 
 interface CharacterModalProps {
   region: string;
@@ -24,17 +24,6 @@ export const CharacterModal: FC<CharacterModalProps> = ({ region }: CharacterMod
     setFormat(CHARACTER_AND_REALM);
   };
 
-  const customTheme: CustomFlowbiteTheme["modal"] = {
-    root: {
-      show: {
-        on: "flex bg-gray-900 bg-opacity-85",
-      },
-    },
-    content: {
-      inner: "relative flex max-h-[90dvh] flex-col rounded-lg bg-gray-900 border-gray-700 border-2",
-    },
-  };
-
   return (
     <div>
       <div>
@@ -50,7 +39,7 @@ export const CharacterModal: FC<CharacterModalProps> = ({ region }: CharacterMod
       </div>
       <div>
         <Modal
-          theme={customTheme}
+          theme={modalTheme}
           show={showCharacterModal}
           onClose={() => {
             setShowCharacterModal(false);
@@ -93,7 +82,7 @@ export const CharacterModal: FC<CharacterModalProps> = ({ region }: CharacterMod
                     </div>
                     <TextInput
                       id="realm"
-                      placeholder="Illidan"
+                      placeholder="Laughing Skull"
                       value={realm}
                       onChange={(event) => setRealm(event.target.value)}
                       required

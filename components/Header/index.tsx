@@ -14,7 +14,7 @@ export const Header: FC = () => {
 
   return (
     <div className="w-full font-sans">
-      <header className="w-full flex justify-center bg-gray-800 text-white text-center py-2 shadow-xl mb-2">
+      <header className="w-full flex justify-center bg-gray-800 text-white text-center py-2 shadow-xl">
         <div className="max-w-6xl flex flex-row w-full">
           <div
             className="flex flex-row w-full cursor-pointer"
@@ -32,7 +32,7 @@ export const Header: FC = () => {
           {region && (
             <>
               <CharacterModal region={region} />
-              <Dropdown color="dark" label={region.toUpperCase()} dismissOnClick={false}>
+              <Dropdown color="dark" label={region.toUpperCase()} dismissOnClick={true}>
                 {REGIONS.map((region) => {
                   return (
                     <Dropdown.Item

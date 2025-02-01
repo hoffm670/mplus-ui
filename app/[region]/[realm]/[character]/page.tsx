@@ -1,7 +1,7 @@
 "use client";
+
 import { DungeonPanel } from "@/components/DungeonPanel";
 import { StatPanel } from "@/components/StatPanel";
-import { BODY_EXTRA_MARGIN } from "@/domain/constants";
 import useGetCharacterInfo from "@/domain/queries/get-character-info";
 import useGetStats from "@/domain/queries/get-stats";
 import { Spinner } from "flowbite-react";
@@ -20,7 +20,7 @@ export default function MAIN() {
   } = useGetStats(region);
 
   return (
-    <div className="w-full flex flex-col items-center" style={{ minHeight: BODY_EXTRA_MARGIN }}>
+    <div className="w-full flex flex-col items-center">
       {(isLoading || isValidating || statsIsLoading || statsIsValidating) && (
         <div className="my-8">
           <Spinner aria-label="Loader" color="gray" className="w-20 h-20" />
@@ -81,7 +81,6 @@ export default function MAIN() {
                   </div>
                 </div>
               </div>
-
               <div>
                 {statsData?.dungeons.map((dungeon) => {
                   return (

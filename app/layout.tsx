@@ -1,6 +1,6 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { SITE_TITLE } from "@/domain/constants";
+import { BODY_EXTRA_MARGIN, SITE_TITLE } from "@/domain/constants";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -23,7 +23,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="flex flex-col items-center min-w-[768px]">
           <Header />
-          {children}
+          <div className="w-full flex flex-col py-2" style={{ minHeight: BODY_EXTRA_MARGIN }}>
+            {children}
+          </div>
           <Footer />
         </div>
       </body>

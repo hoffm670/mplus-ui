@@ -9,4 +9,4 @@ export const SITE_TITLE = "Mythic Plus Title Tracker";
 export const CHARACTER_AND_REALM: string = "Character & Realm";
 export const RAIDER_LINK: string = "Raider.io Link";
 
-export const BODY_EXTRA_MARGIN: string = "calc(100vh - 190px)";
+export const BODY_EXTRA_MARGIN: string = "calc(100vh - 166px)";
