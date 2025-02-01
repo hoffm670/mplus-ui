@@ -66,7 +66,7 @@ export const CharacterModal: FC<CharacterModalProps> = ({ region }: CharacterMod
                 <div>
                   <div className="mb-4">
                     <div className="mb-2 block">
-                      <Label htmlFor="email" value="Character Name" className="text-white" />
+                      <Label htmlFor="character" value="Character Name" className="text-white" />
                     </div>
                     <TextInput
                       id="character"
@@ -78,7 +78,7 @@ export const CharacterModal: FC<CharacterModalProps> = ({ region }: CharacterMod
                   </div>
                   <div className="mb-4">
                     <div className="mb-2 block">
-                      <Label htmlFor="email" value="Realm" className="text-white" />
+                      <Label htmlFor="realm" value="Realm" className="text-white" />
                     </div>
                     <TextInput
                       id="realm"
