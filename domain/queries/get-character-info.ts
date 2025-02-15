@@ -12,12 +12,7 @@ const FIELDS: string[] = [
 ];
 
 const getCharacterInfo = async (url: string, region: string, realm: string, character: string) => {
-  const searchParams = new URLSearchParams({
-    region: region,
-    realm: realm,
-    name: character,
-    fields: FIELDS.join(","),
-  });
+  const searchParams: string = `region=${region}&realm=${realm}&name=${character}&fields=${FIELDS.join(",")}`;
 
   const response = await fetch(`${url}?${searchParams}`, { cache: "no-store" });
   return response.json();
