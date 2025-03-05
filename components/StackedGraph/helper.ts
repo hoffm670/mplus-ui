@@ -8,7 +8,7 @@ const THRESHOLD = 4;
 
 export const modifyData = (keyCounts: { [key: string]: number }): KeyData[] => {
   const keys = Object.keys(keyCounts);
-  keys.sort();
+  keys.sort((a, b) => Number(a) - Number(b));
   const sum = keys.reduce((accumulator: number, key: string) => accumulator + keyCounts[key], 0);
   let out = keys.map((key) => {
     return {
@@ -51,7 +51,7 @@ const combineKeyData = (keys: KeyData[]): KeyData => {
   const sumPercent = keys.reduce((accumulator: number, key: KeyData) => accumulator + key.percentage, 0);
   const sumCount = keys.reduce((accumulator: number, key: KeyData) => accumulator + key.count, 0);
   return {
-    keyLevel: `${keys[0].keyLevel} - ${keys[keys.length - 1].keyLevel}`,
+    keyLevel: `${keys[0].keyLevel ?? 0} - ${keys[keys.length - 1].keyLevel}`,
     count: sumCount,
     percentage: sumPercent,
   };

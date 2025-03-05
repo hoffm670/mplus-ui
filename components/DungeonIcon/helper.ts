@@ -72,4 +72,36 @@ const dungeonMap: Record<string, DungeonIconInfo> = {
     url: "/dawnbreaker.jpg",
     alt: "The Dawnbreaker",
   },
+  BREW: {
+    url: "/cinderbrew-meadery.jpg",
+    alt: "Cinderbrew Meadery",
+  },
+  DFC: {
+    url: "/darkflame-cleft.jpg",
+    alt: "Darkflame Cleft",
+  },
+  WORK: {
+    url: "/mechagon-workshop.jpg",
+    alt: "Mechagon Workshop",
+  },
+  FLOOD: {
+    url: "/operation-floodgate.jpg",
+    alt: "Operation Floodgate",
+  },
+  PSF: {
+    url: "/priory-sacred-flame.jpg",
+    alt: "Priory of the Sacred Flame",
+  },
+  ML: {
+    url: "/motherlode.jpg",
+    alt: "The MOTHERLODE!!",
+  },
+  ROOK: {
+    url: "/rookery.jpg",
+    alt: "The Rookery",
+  },
+  TOP: {
+    url: "/theater-of-pain.jpg",
+    alt: "Theater of Pain",
+  },
 };

@@ -49,7 +49,6 @@ const StackedGraph: FC<StackedGraphProps> = ({ keyCounts, dungeonRuns, character
               />
             </svg>
           </div>
-          // </div>
         )}
         {keyData.map((data, index) => {
           let tag = Math.random().toString(36);
@@ -66,7 +65,7 @@ const StackedGraph: FC<StackedGraphProps> = ({ keyCounts, dungeonRuns, character
               <div
                 id={tag}
                 role="tooltip"
-                className="absolute z-10 invisible px-3 py-2 text-xs font-medium text-black transition-opacity duration-300 bg-white rounded-lg shadow-sm opacity-0 tooltip flex flex-col"
+                className="absolute z-10 w-[135px] invisible px-3 py-2 text-xs font-medium text-black transition-opacity duration-300 bg-white rounded-lg shadow-sm opacity-0 tooltip flex flex-col"
               >
                 <span>{`Key Level: ${data.keyLevel}`}</span>
                 <span>{`Characters: ${data.count}`}</span>
