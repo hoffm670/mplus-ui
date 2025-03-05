@@ -7,6 +7,11 @@ const nextConfig = {
             destination: '/us',
             permanent: true,
           },
+          {
+            source: '/:region',
+            destination: 'https://mplus-title-tracker.vercel.app/:region',
+            permanent: true,
+          },
         ]
       },
       async headers() {
@@ -16,7 +21,6 @@ const nextConfig = {
                 source: "/api/:path*",
                 headers: [
                     { key: "Access-Control-Allow-Credentials", value: "true" },
-                    { key: "Access-Control-Allow-Origin", value: "https://mplus-title-tracker.web.app" },
                     { key: "Access-Control-Allow-Origin", value: "https://mplus-title-tracker.vercel.app" },
                     { key: "Access-Control-Allow-Origin", value: "https://mplus-title-tracker.vercel.dev.app" },
                     { key: "Access-Control-Allow-Methods", value: "GET" },
