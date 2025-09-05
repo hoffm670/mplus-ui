@@ -104,4 +104,20 @@ const dungeonMap: Record<string, DungeonIconInfo> = {
     url: "/theater-of-pain.jpg",
     alt: "Theater of Pain",
   },
+  HOA: {
+    url: "/halls-of-atonement.jpg",
+    alt: "Halls of Atonement",
+  },
+  EDA: {
+    url: "/ecodome.jpg",
+    alt: "Eco-Dome Al'dani",
+  },
+  STRT: {
+    url: "/tz-streets.jpg",
+    alt: "Tazavesh: Streets of Wonder",
+  },
+  GMBT: {
+    url: "/tz-soleah.jpg",
+    alt: "Tazavesh: So'leah's Gambit",
+  },
 };
