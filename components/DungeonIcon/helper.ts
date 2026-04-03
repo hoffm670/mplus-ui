@@ -120,4 +120,36 @@ const dungeonMap: Record<string, DungeonIconInfo> = {
     url: "/tz-soleah.jpg",
     alt: "Tazavesh: So'leah's Gambit",
   },
+  AA: {
+    url: "/algethar-academy.jpg",
+    alt: "Algeth'ar Academy",
+  },
+  MT: {
+    url: "/magisters-terrace.jpg",
+    alt: "Magisters' Terrace",
+  },
+  MC: {
+    url: "/maisara-caverns.jpg",
+    alt: "Maisara Caverns",
+  },
+  NPX: {
+    url: "/nexus-point-xenas.jpg",
+    alt: "Nexus-Point Xenas",
+  },
+  POS: {
+    url: "/pit-of-saron.jpg",
+    alt: "Pit of Saron",
+  },
+  SEAT: {
+    url: "/seat-of-the-triumvirate.jpg",
+    alt: "Seat of the Triumvirate",
+  },
+  SR: {
+    url: "/skyreach.jpg",
+    alt: "Skyreach",
+  },
+  WS: {
+    url: "/windrunner-spire.jpg",
+    alt: "Windrunner Spire",
+  },
 };
