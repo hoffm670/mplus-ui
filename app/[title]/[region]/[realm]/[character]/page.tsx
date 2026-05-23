@@ -66,9 +66,6 @@ export default function MAIN() {
                         <div>{characterData.active_spec_name}</div>
                         <div className="ml-1">{characterData.class}</div>
                       </div>
-                      <div className="flex flex-row text-sm text-gray-500 mt-1">
-                        <div>{`${TITLE_NAMES[title]} (${TITLE_LABELS[title]}) title`}</div>
-                      </div>
                     </div>
                   </div>
                 </div>
