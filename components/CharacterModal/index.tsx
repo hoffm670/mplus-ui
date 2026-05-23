@@ -31,18 +31,16 @@ export const CharacterModal: FC<CharacterModalProps> = ({ title: pageTitle, regi
   };
 
   return (
-    <div>
-      <div>
-        <Button
-          onClick={() => {
-            setShowCharacterModal(!showCharacterModal);
-          }}
-          color="dark"
-          className="mr-10"
-        >
-          Check Your Character
-        </Button>
-      </div>
+    <div className="shrink-0">
+      <Button
+        onClick={() => {
+          setShowCharacterModal(!showCharacterModal);
+        }}
+        color="dark"
+        className="whitespace-nowrap shrink-0 min-w-[11.5rem]"
+      >
+        Check Your Character
+      </Button>
       <div>
         <Modal
           theme={modalTheme}
