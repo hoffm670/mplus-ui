@@ -1,17 +1,23 @@
-import { CHARACTER_AND_REALM, RAIDER_LINK } from "@/domain/constants";
+import { CHARACTER_AND_REALM, RAIDER_LINK, TITLE_LABELS, TITLES, Title } from "@/domain/constants";
 import { Button, Dropdown, Label, Modal, TextInput } from "flowbite-react";
 import { useRouter } from "next/navigation";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { modalTheme, navigateToCharacterScreen } from "./helper";
 
 interface CharacterModalProps {
+  title: Title;
   region: string;
 }
 
-export const CharacterModal: FC<CharacterModalProps> = ({ region }: CharacterModalProps) => {
+export const CharacterModal: FC<CharacterModalProps> = ({ title: pageTitle, region }: CharacterModalProps) => {
   const router = useRouter();
 
+  const [selectedTitle, setSelectedTitle] = useState<Title>(pageTitle);
   const [showCharacterModal, setShowCharacterModal] = useState<boolean>(false);
+
+  useEffect(() => {
+    setSelectedTitle(pageTitle);
+  }, [pageTitle]);
   const [character, setCharacter] = useState<string>("");
   const [realm, setRealm] = useState<string>("");
   const [raiderLink, setRaiderLink] = useState<string>("");
@@ -52,6 +58,15 @@ export const CharacterModal: FC<CharacterModalProps> = ({ region }: CharacterMod
               <div className="text-white">Enter Your Character</div>
             </Modal.Header>
             <Modal.Body>
+              <div className="mb-4">
+                <Dropdown color="dark" label={TITLE_LABELS[selectedTitle]} dismissOnClick={true}>
+                  {TITLES.map((titleOption) => (
+                    <Dropdown.Item key={`modal-title-${titleOption}`} onClick={() => setSelectedTitle(titleOption)}>
+                      {TITLE_LABELS[titleOption]}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown>
+              </div>
               <div className="mb-4">
                 <Dropdown color="dark" label={format} dismissOnClick={true}>
                   <Dropdown.Item key={"character"} onClick={() => setFormat(CHARACTER_AND_REALM)}>
@@ -110,7 +125,7 @@ export const CharacterModal: FC<CharacterModalProps> = ({ region }: CharacterMod
                   <Button
                     color="dark"
                     onClick={() => {
-                      navigateToCharacterScreen(router, format, region, realm, character, raiderLink);
+                      navigateToCharacterScreen(router, format, selectedTitle, region, realm, character, raiderLink);
                       setShowCharacterModal(false);
                       clearForms();
                     }}

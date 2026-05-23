@@ -14,7 +14,7 @@ interface DungeonStatsResponse {
 interface DungeonStats {
   info: DungeonInfo;
   runs: { [key: string]: number };
-  runList: DungeonRun[];
+  runList: string[];
 }
 
 interface DungeonRun {

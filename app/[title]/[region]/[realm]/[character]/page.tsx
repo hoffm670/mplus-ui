@@ -4,12 +4,18 @@ import { DungeonPanel } from "@/components/DungeonPanel";
 import { StatPanel } from "@/components/StatPanel";
 import useGetCharacterInfo from "@/domain/queries/get-character-info";
 import useGetStats from "@/domain/queries/get-stats";
+import { DEFAULT_TITLE, TITLE_LABELS, TITLE_NAMES } from "@/domain/constants";
+import { parseAppPath } from "@/domain/path";
 import { Spinner } from "flowbite-react";
 import { notFound, usePathname } from "next/navigation";
 
 export default function MAIN() {
   const pathname = usePathname();
-  const [_, region, realm, character] = pathname.split("/");
+  const appPath = parseAppPath(pathname);
+  const title = appPath?.title ?? DEFAULT_TITLE;
+  const region = appPath?.region ?? "us";
+  const realm = appPath?.realm ?? "";
+  const character = appPath?.character ?? "";
 
   const { data: characterData, isLoading, error, isValidating } = useGetCharacterInfo(region, realm, character);
   const {
@@ -17,7 +23,11 @@ export default function MAIN() {
     isLoading: statsIsLoading,
     error: statsError,
     isValidating: statsIsValidating,
-  } = useGetStats(region);
+  } = useGetStats(title, region);
+
+  if (!appPath?.realm || !appPath?.character) {
+    return notFound();
+  }
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -56,6 +66,9 @@ export default function MAIN() {
                         <div>{characterData.active_spec_name}</div>
                         <div className="ml-1">{characterData.class}</div>
                       </div>
+                      <div className="flex flex-row text-sm text-gray-500 mt-1">
+                        <div>{`${TITLE_NAMES[title]} (${TITLE_LABELS[title]}) title`}</div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -72,7 +85,7 @@ export default function MAIN() {
                     </div>
                     <div className="w-1/3">
                       <StatPanel
-                        title="Difference from cutoff"
+                        title={`${TITLE_LABELS[title]} cutoff difference`}
                         stat={Math.round(
                           characterData.mythic_plus_scores_by_season[0]["scores"]["all"] - statsData.rating_cutoff
                         )}
@@ -80,6 +93,9 @@ export default function MAIN() {
                     </div>
                   </div>
                 </div>
+              </div>
+              <div className="font-bold font-sans mb-2">
+                {`Best Dungeons for Characters above ${TITLE_NAMES[title]} (${TITLE_LABELS[title]}) cutoff`}
               </div>
               <div>
                 {statsData?.dungeons.map((dungeon) => {

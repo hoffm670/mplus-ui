@@ -2,14 +2,18 @@
 
 import { BIG_RAIDER_LOGO, RAIDER_IO } from "@/domain/constants";
 import useGetStats from "@/domain/queries/get-stats";
+import { parseAppPath } from "@/domain/path";
 import { Footer as FlowFooter } from "flowbite-react";
 import { usePathname } from "next/navigation";
 import { FC } from "react";
 
 export const Footer: FC = () => {
   const pathname = usePathname();
-  const region = pathname.split("/")[1];
-  const { data, isLoading, error, isValidating } = useGetStats(region);
+  const appPath = parseAppPath(pathname);
+  const { data, isLoading, error, isValidating } = useGetStats(
+    appPath?.title ?? "hero",
+    appPath?.region ?? "us"
+  );
 
   return (
     <div className="w-full bg-gray-800 flex flex-row justify-center min-w-[768px] h-[88px]">

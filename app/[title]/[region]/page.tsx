@@ -2,13 +2,21 @@
 import { DungeonPanel } from "@/components/DungeonPanel";
 import { StatPanel } from "@/components/StatPanel";
 import useGetStats from "@/domain/queries/get-stats";
+import { DEFAULT_TITLE } from "@/domain/constants";
+import { parseAppPath } from "@/domain/path";
 import { Spinner } from "flowbite-react";
-import { usePathname } from "next/navigation";
+import { notFound, usePathname } from "next/navigation";
 
 export default function MAIN() {
   const pathname = usePathname();
-  let region = pathname.split("/")[1];
-  const { data, isLoading, error, isValidating } = useGetStats(region);
+  const appPath = parseAppPath(pathname);
+  const title = appPath?.title ?? DEFAULT_TITLE;
+  const region = appPath?.region ?? "us";
+  const { data, isLoading, error, isValidating } = useGetStats(title, region);
+
+  if (!appPath) {
+    return notFound();
+  }
 
   return (
     <div className="w-full flex flex-col items-center">

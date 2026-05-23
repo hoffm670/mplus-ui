@@ -4,7 +4,12 @@ const nextConfig = {
         return [
           {
             source: '/',
-            destination: '/us',
+            destination: '/hero/us',
+            permanent: true,
+          },
+          {
+            source: '/:region(us|eu|tw|kr)',
+            destination: '/hero/:region',
             permanent: true,
           },
         ]
