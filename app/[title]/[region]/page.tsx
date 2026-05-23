@@ -2,7 +2,7 @@
 import { DungeonPanel } from "@/components/DungeonPanel";
 import { StatPanel } from "@/components/StatPanel";
 import useGetStats from "@/domain/queries/get-stats";
-import { DEFAULT_TITLE } from "@/domain/constants";
+import { DEFAULT_TITLE, TITLE_LABELS, TITLE_NAMES } from "@/domain/constants";
 import { parseAppPath } from "@/domain/path";
 import { Spinner } from "flowbite-react";
 import { notFound, usePathname } from "next/navigation";
@@ -39,7 +39,9 @@ export default function MAIN() {
                 <StatPanel title={`${data.change_days} day cutoff change`} stat={data.change} />
               </div>
             </div>
-            <div className="font-bold font-sans">Best Dungeons for Characters above cutoff</div>
+            <div className="font-bold font-sans mb-2">
+                {`Best Dungeons for Characters above ${TITLE_NAMES[title]} (${TITLE_LABELS[title]}) cutoff`}
+              </div>
             <div>
               {data?.dungeons.map((dungeon) => {
                 return (
