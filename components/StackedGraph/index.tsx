@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { modifyData, KeyData, getKeyPositionPercent } from "./helper";
+import { modifyData, KeyData, getKeyPositionPercent, SEGMENT_RANGE_SEPARATOR } from "./helper";
 import { initFlowbite } from "flowbite";
 
 interface StackedGraphProps {
@@ -31,7 +31,7 @@ const StackedGraph: FC<StackedGraphProps> = ({ keyCounts, dungeonRuns, character
         {characterRun && (
           <div
             className={`w-6 h-6 absolute bottom-5`}
-            style={{ left: `calc(${getKeyPositionPercent(dungeonRuns, characterRun)}% - 13px)` }}
+            style={{ left: `calc(${getKeyPositionPercent(keyData, keyCounts, dungeonRuns, characterRun)}% - 13px)` }}
           >
             <svg
               className={`w-6 h-6 text-white`}
@@ -61,7 +61,9 @@ const StackedGraph: FC<StackedGraphProps> = ({ keyCounts, dungeonRuns, character
                 width: `${data.percentage}%`,
               }}
             >
-              <div>{data.percentage > 4 && !data.keyLevel.includes("-") ? data.keyLevel : ""} </div>
+              <div>
+                {data.percentage > 4 && !data.keyLevel.includes(SEGMENT_RANGE_SEPARATOR) ? data.keyLevel : ""}{" "}
+              </div>
               <div
                 id={tag}
                 role="tooltip"
