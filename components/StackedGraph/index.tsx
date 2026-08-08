@@ -20,8 +20,12 @@ const newColors = [
   "bg-black hover:bg-gray-800",
 ];
 
+const BOTTOM_TIER_GRAY_MAX_PERCENT = 5;
+
 const StackedGraph: FC<StackedGraphProps> = ({ keyCounts, dungeonRuns, characterRun }) => {
   const keyData: KeyData[] = modifyData(keyCounts);
+  const skipGray = keyData.length > 0 && keyData[0].percentage > BOTTOM_TIER_GRAY_MAX_PERCENT;
+  const colorOffset = skipGray ? 1 : 0;
   useEffect(() => {
     initFlowbite();
   }, []);
@@ -56,7 +60,7 @@ const StackedGraph: FC<StackedGraphProps> = ({ keyCounts, dungeonRuns, character
             <div
               data-tooltip-target={tag}
               key={data.keyLevel}
-              className={`mr-px ${newColors[index]} cursor-pointer relative`}
+              className={`mr-px ${newColors[index + colorOffset]} cursor-pointer relative`}
               style={{
                 width: `${data.percentage}%`,
               }}
