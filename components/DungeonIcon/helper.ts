@@ -152,4 +152,36 @@ const dungeonMap: Record<string, DungeonIconInfo> = {
     url: "/windrunner-spire.jpg",
     alt: "Windrunner Spire",
   },
+  AOF: {
+    url: "/altar-of-fangs.jpg",
+    alt: "Altar of Fangs",
+  },
+  DON: {
+    url: "/den-of-nalorakk.jpg",
+    alt: "Den of Nalorakk",
+  },
+  KR: {
+    url: "/kings-rest.jpg",
+    alt: "Kings' Rest",
+  },
+  MR: {
+    url: "/murder-row.jpg",
+    alt: "Murder Row",
+  },
+  RLP: {
+    url: "/ruby-life-pools.jpg",
+    alt: "Ruby Life Pools",
+  },
+  TOS: {
+    url: "/temple-of-sethraliss.jpg",
+    alt: "Temple of Sethraliss",
+  },
+  BV: {
+    url: "/the-blinding-vale.jpg",
+    alt: "The Blinding Vale",
+  },
+  VSA: {
+    url: "/voidscar-arena.jpg",
+    alt: "Voidscar Arena",
+  },
 };
