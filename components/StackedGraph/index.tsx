@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useId } from "react";
 import { modifyData, KeyData, getKeyPositionPercent, SEGMENT_RANGE_SEPARATOR } from "./helper";
 import { initFlowbite } from "flowbite";
 
@@ -23,6 +23,7 @@ const newColors = [
 const BOTTOM_TIER_GRAY_MAX_PERCENT = 5;
 
 const StackedGraph: FC<StackedGraphProps> = ({ keyCounts, dungeonRuns, characterRun }) => {
+  const idPrefix = useId();
   const keyData: KeyData[] = modifyData(keyCounts);
   const skipGray = keyData.length > 0 && keyData[0].percentage > BOTTOM_TIER_GRAY_MAX_PERCENT;
   const colorOffset = skipGray ? 1 : 0;
@@ -55,7 +56,7 @@ const StackedGraph: FC<StackedGraphProps> = ({ keyCounts, dungeonRuns, character
           </div>
         )}
         {keyData.map((data, index) => {
-          let tag = Math.random().toString(36);
+          const tag = `${idPrefix}-${index}`;
           return (
             <div
               data-tooltip-target={tag}

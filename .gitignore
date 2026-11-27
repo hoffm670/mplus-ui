@@ -38,5 +38,6 @@ next-env.d.ts
 tmp/
 
 .firebase
+.flowbite-react
 admin-key.json
 .prod-env

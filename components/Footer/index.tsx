@@ -3,7 +3,7 @@
 import { BIG_RAIDER_LOGO, RAIDER_IO } from "@/domain/constants";
 import useGetStats from "@/domain/queries/get-stats";
 import { parseAppPath } from "@/domain/path";
-import { Footer as FlowFooter } from "flowbite-react";
+import { Footer as FlowFooter, FooterBrand } from "flowbite-react";
 import { usePathname } from "next/navigation";
 import { FC } from "react";
 
@@ -22,7 +22,7 @@ export const Footer: FC = () => {
         className=" bg-gray-800 text-sm rounded-none flex items-center justify-between max-w-7xl mt-0 shadow-none"
       >
         <div className="flex flex-row ">
-          <FlowFooter.Brand src={BIG_RAIDER_LOGO} href={RAIDER_IO} />
+          <FooterBrand src={BIG_RAIDER_LOGO} href={RAIDER_IO} />
           <div className="flex flex-col justify-center text-sm">Data from Raider.io</div>
         </div>
 

@@ -1,36 +1,55 @@
+import withFlowbiteReact from "flowbite-react/plugin/nextjs";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    async redirects() {
-        return [
-          {
-            source: '/',
-            destination: '/hero/us',
-            permanent: true,
-          },
-          {
-            source: '/:region(us|eu|tw|kr)',
-            destination: '/hero/:region',
-            permanent: true,
-          },
-        ]
+  allowedDevOrigins: [
+    "*.local",
+    ...(process.env.ALLOWED_DEV_ORIGINS ? process.env.ALLOWED_DEV_ORIGINS.split(",") : []),
+  ],
+  images: {
+    dangerouslyAllowSVG: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.raiderio.net",
       },
-      async headers() {
-        return [
-            {
-                // matching all API routes
-                source: "/api/:path*",
-                headers: [
-                    { key: "Access-Control-Allow-Credentials", value: "true" },
-                    { key: "Access-Control-Allow-Origin", value: "https://mplus-title-tracker.web.app" },
-                    { key: "Access-Control-Allow-Origin", value: "https://mplus-title-tracker.vercel.app" },
-                    { key: "Access-Control-Allow-Origin", value: "https://mplus-title-tracker.vercel.dev.app" },
-                    { key: "Access-Control-Allow-Methods", value: "GET" },
-                    { key: "Access-Control-Allow-Headers", value: "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" },
-                    { key: "Cache-Control", value: 'no-store'}
-                ]
-            }
-        ]
-    }
+    ],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/hero/us",
+        permanent: true,
+      },
+      {
+        source: "/:region(us|eu|tw|kr)",
+        destination: "/hero/:region",
+        permanent: true,
+      },
+    ];
+  },
+  async headers() {
+    return [
+      {
+        // matching all API routes
+        source: "/api/:path*",
+        headers: [
+          { key: "Access-Control-Allow-Credentials", value: "true" },
+          { key: "Access-Control-Allow-Origin", value: "https://mplus-title-tracker.web.app" },
+          { key: "Access-Control-Allow-Origin", value: "https://mplus-title-tracker.vercel.app" },
+          { key: "Access-Control-Allow-Origin", value: "https://mplus-title-tracker.vercel.dev.app" },
+          { key: "Access-Control-Allow-Methods", value: "GET" },
+          {
+            key: "Access-Control-Allow-Headers",
+            value:
+              "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+          },
+          { key: "Cache-Control", value: "no-store" },
+        ],
+      },
+    ];
+  },
 };
 
-export default nextConfig;
+export default withFlowbiteReact(nextConfig);

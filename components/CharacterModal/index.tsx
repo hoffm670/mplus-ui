@@ -1,7 +1,7 @@
 import { CHARACTER_AND_REALM, RAIDER_LINK, TITLE_LABELS, TITLES, Title } from "@/domain/constants";
-import { Button, Dropdown, Label, Modal, TextInput } from "flowbite-react";
+import { Button, Dropdown, DropdownItem, Label, Modal, ModalBody, ModalFooter, ModalHeader, TextInput } from "flowbite-react";
 import { useRouter } from "next/navigation";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { modalTheme, navigateToCharacterScreen } from "./helper";
 
 interface CharacterModalProps {
@@ -12,18 +12,16 @@ interface CharacterModalProps {
 export const CharacterModal: FC<CharacterModalProps> = ({ title: pageTitle, region }: CharacterModalProps) => {
   const router = useRouter();
 
-  const [selectedTitle, setSelectedTitle] = useState<Title>(pageTitle);
+  const [titleOverride, setTitleOverride] = useState<Title | null>(null);
+  const selectedTitle = titleOverride ?? pageTitle;
   const [showCharacterModal, setShowCharacterModal] = useState<boolean>(false);
-
-  useEffect(() => {
-    setSelectedTitle(pageTitle);
-  }, [pageTitle]);
   const [character, setCharacter] = useState<string>("");
   const [realm, setRealm] = useState<string>("");
   const [raiderLink, setRaiderLink] = useState<string>("");
   const [format, setFormat] = useState<string>(CHARACTER_AND_REALM);
 
   const clearForms = () => {
+    setTitleOverride(null);
     setCharacter("");
     setRealm("");
     setRaiderLink("");
@@ -52,34 +50,36 @@ export const CharacterModal: FC<CharacterModalProps> = ({ title: pageTitle, regi
           dismissible
         >
           <div className="">
-            <Modal.Header className="mx-6 py-5 px-0">
+            <ModalHeader className="mx-6 py-5 px-0">
               <div className="text-white">Enter Your Character</div>
-            </Modal.Header>
-            <Modal.Body>
+            </ModalHeader>
+            <ModalBody>
               <div className="mb-4">
                 <Dropdown color="dark" label={TITLE_LABELS[selectedTitle]} dismissOnClick={true}>
                   {TITLES.map((titleOption) => (
-                    <Dropdown.Item key={`modal-title-${titleOption}`} onClick={() => setSelectedTitle(titleOption)}>
+                    <DropdownItem key={`modal-title-${titleOption}`} onClick={() => setTitleOverride(titleOption)}>
                       {TITLE_LABELS[titleOption]}
-                    </Dropdown.Item>
+                    </DropdownItem>
                   ))}
                 </Dropdown>
               </div>
               <div className="mb-4">
                 <Dropdown color="dark" label={format} dismissOnClick={true}>
-                  <Dropdown.Item key={"character"} onClick={() => setFormat(CHARACTER_AND_REALM)}>
+                  <DropdownItem key={"character"} onClick={() => setFormat(CHARACTER_AND_REALM)}>
                     {CHARACTER_AND_REALM}
-                  </Dropdown.Item>
-                  <Dropdown.Item key={"raider"} onClick={() => setFormat(RAIDER_LINK)}>
+                  </DropdownItem>
+                  <DropdownItem key={"raider"} onClick={() => setFormat(RAIDER_LINK)}>
                     {RAIDER_LINK}
-                  </Dropdown.Item>
+                  </DropdownItem>
                 </Dropdown>
               </div>
               {format === CHARACTER_AND_REALM ? (
                 <div>
                   <div className="mb-4">
                     <div className="mb-2 block">
-                      <Label htmlFor="character" value="Character Name" className="text-white" />
+                      <Label htmlFor="character" className="text-white">
+                        Character Name
+                      </Label>
                     </div>
                     <TextInput
                       id="character"
@@ -91,7 +91,9 @@ export const CharacterModal: FC<CharacterModalProps> = ({ title: pageTitle, regi
                   </div>
                   <div className="mb-4">
                     <div className="mb-2 block">
-                      <Label htmlFor="realm" value="Realm" className="text-white" />
+                      <Label htmlFor="realm" className="text-white">
+                        Realm
+                      </Label>
                     </div>
                     <TextInput
                       id="realm"
@@ -106,7 +108,9 @@ export const CharacterModal: FC<CharacterModalProps> = ({ title: pageTitle, regi
                 <div>
                   <div className="mb-4">
                     <div className="mb-2 block">
-                      <Label htmlFor="email" value="Raider.io Character URL" className="text-white" />
+                      <Label htmlFor="raider-link" className="text-white">
+                        Raider.io Character URL
+                      </Label>
                     </div>
                     <TextInput
                       id="raider-link"
@@ -118,7 +122,7 @@ export const CharacterModal: FC<CharacterModalProps> = ({ title: pageTitle, regi
                   </div>
                 </div>
               )}
-              <Modal.Footer className="py-6 px-0">
+              <ModalFooter className="py-6 px-0">
                 <div>
                   <Button
                     color="dark"
@@ -131,8 +135,8 @@ export const CharacterModal: FC<CharacterModalProps> = ({ title: pageTitle, regi
                     Confirm
                   </Button>
                 </div>
-              </Modal.Footer>
-            </Modal.Body>
+              </ModalFooter>
+            </ModalBody>
           </div>
         </Modal>
       </div>

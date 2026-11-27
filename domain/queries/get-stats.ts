@@ -9,14 +9,16 @@ const getStats = async (url: string, region: string, title: Title) => {
 };
 
 const useGetStats = (title: Title, region: string) => {
-  if (!TITLES.includes(title) || !REGIONS.includes(region)) {
-    return notFound();
-  }
+  const isValid = TITLES.includes(title) && REGIONS.includes(region);
   const { data, error, isValidating } = useSWR<DungeonStatsResponse>(
-    [process.env.NEXT_PUBLIC_GET_STATS_URL, title, region],
+    isValid ? [process.env.NEXT_PUBLIC_GET_STATS_URL, title, region] : null,
     ([url, title, region]: [string, Title, string]) => getStats(url, region, title),
     { dedupingInterval: Infinity, revalidateOnFocus: false }
   );
+
+  if (!isValid) {
+    return notFound();
+  }
 
   return {
     data,

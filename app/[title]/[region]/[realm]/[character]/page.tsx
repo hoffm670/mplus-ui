@@ -51,7 +51,7 @@ export default function MAIN() {
                 <div className="w-1/3 my-4">
                   <div className="flex flex-row">
                     <div className="mr-4">
-                      <img src={characterData.thumbnail_url}></img>
+                      <img src={characterData.thumbnail_url} alt={characterData.name} />
                     </div>
                     <div className="flex flex-col">
                       <div className="flex flex-row">

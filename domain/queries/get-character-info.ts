@@ -19,17 +19,20 @@ const getCharacterInfo = async (url: string, region: string, realm: string, char
 };
 
 const useGetCharacterInfo = (region: string, realm: string, character: string) => {
-  if (!REGIONS.includes(region)) {
-    return notFound();
-  }
+  const isValidRegion = REGIONS.includes(region);
   let { data, error, isValidating } = useSWR<CharacterInfo>(
-    RAIDER_URL,
+    isValidRegion ? RAIDER_URL : null,
     (url: string) => getCharacterInfo(url, region, realm, character),
     {
       dedupingInterval: Infinity,
       revalidateOnFocus: false,
     }
   );
+
+  if (!isValidRegion) {
+    return notFound();
+  }
+
   if (data && data["statusCode"] && data["statusCode"] !== 200) {
     error = data;
   }

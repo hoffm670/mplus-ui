@@ -1,6 +1,6 @@
 "use client";
 
-import { Dropdown } from "flowbite-react";
+import { Dropdown, DropdownItem } from "flowbite-react";
 import { FC } from "react";
 import Image from "next/image";
 import { REGIONS, SITE_TITLE, TITLE_LABELS, TITLES, Title } from "@/domain/constants";
@@ -40,14 +40,14 @@ export const Header: FC = () => {
               <Dropdown color="dark" label={TITLE_LABELS[title]} dismissOnClick={true}>
                 {TITLES.map((titleOption) => {
                   return (
-                    <Dropdown.Item
+                    <DropdownItem
                       key={`title-dd-${titleOption}`}
                       onClick={() => {
                         router.push(buildAppPath({ title: titleOption, region, realm, character }));
                       }}
                     >
                       {TITLE_LABELS[titleOption as Title]}
-                    </Dropdown.Item>
+                    </DropdownItem>
                   );
                 })}
               </Dropdown>
@@ -56,14 +56,14 @@ export const Header: FC = () => {
               <Dropdown color="dark" label={region.toUpperCase()} dismissOnClick={true}>
                 {REGIONS.map((regionOption) => {
                   return (
-                    <Dropdown.Item
+                    <DropdownItem
                       key={`region-dd-${regionOption}`}
                       onClick={() => {
                         router.push(buildAppPath({ title, region: regionOption, realm, character }));
                       }}
                     >
                       {regionOption.toUpperCase()}
-                    </Dropdown.Item>
+                    </DropdownItem>
                   );
                 })}
               </Dropdown>

@@ -1,5 +1,5 @@
 import { CHARACTER_AND_REALM } from "@/domain/constants";
-import { CustomFlowbiteTheme } from "flowbite-react";
+import { createTheme } from "flowbite-react";
 
 export const navigateToCharacterScreen = (router, format, title, region, realm, character, raiderLink) => {
   // TODO input validation and cleanup
@@ -14,13 +14,13 @@ export const navigateToCharacterScreen = (router, format, title, region, realm, 
   return;
 };
 
-export const modalTheme: CustomFlowbiteTheme["modal"] = {
+export const modalTheme = createTheme({
   root: {
     show: {
-      on: "flex bg-gray-900 bg-opacity-85",
+      on: "flex bg-gray-900/85",
     },
   },
   content: {
     inner: "relative flex max-h-[90dvh] flex-col rounded-lg bg-gray-900 border-gray-700 border-2",
   },
-};
+});
